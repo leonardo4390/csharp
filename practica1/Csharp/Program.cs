@@ -130,84 +130,170 @@ stock actual. Luego permitir buscar un producto por código
 y mostrar sus datos.
 Extras opcionales: Permitir actualización de stock.
 */
+    // public static void Main(String[] args)
+    // {
+    //     List<Inventario> inventarios = new List<Inventario>();
+    //     int codigo = 0;
+
+    //     while (true)
+    //     {
+    //         codigo += 1;
+    //         Console.WriteLine("Ingrese el nombre del producto: ");
+    //         string producto = Console.ReadLine();
+    //         Console.WriteLine("Ingrese el stock del producto: ");
+    //         int stock = Convert.ToInt32(Console.ReadLine());
+    //         Inventario nuevoProducto = new Inventario { Codigo = codigo, Producto = producto, Stock = stock };
+    //         inventarios.Add(nuevoProducto);
+    //         Console.WriteLine("Desea ingresar otro producto? (s/n): ");
+    //         var seguir = Console.ReadLine();
+    //         if (seguir != "s")
+    //         {
+    //             break;
+    //         }
+    //     }
+    //     Console.WriteLine("\nInventario:");
+    //     MostrarInventario(inventarios);
+    //     Console.WriteLine("\nIngrese el codigo del producto a buscar: ");
+    //     int buscar = Convert.ToInt32(Console.ReadLine());
+    //     BuscarProducto(inventarios, buscar);
+    //     Console.WriteLine("\nIngrese el codigo del producto a modificar: ");
+    //     int modificar = Convert.ToInt32(Console.ReadLine());
+    //     ModificarProducto(inventarios, modificar);
+    //     MostrarInventario(inventarios);
+    // }
+
+    // public static void MostrarInventario(List<Inventario> inventarios)
+    // {
+    //     foreach (Inventario item in inventarios)
+    //     {
+    //         Console.WriteLine($"Codigo: {item.Codigo} | Producto: {item.Producto} | Stock: {item.Stock}");
+    //     }
+    // }
+
+    // public static void BuscarProducto(List<Inventario> inventarios, int codigo)
+    // {
+    //     foreach (Inventario item in inventarios)
+    //     {
+    //         if (item.Codigo == codigo)
+    //         {
+    //             Console.WriteLine($"Codigo: {item.Codigo} | Producto: {item.Producto} | Stock: {item.Stock}");
+    //             break;
+    //         }
+    //     }
+    // }
+
+    // public static void ModificarProducto(List<Inventario> inventarios, int codigo)
+    // {
+    //     foreach (Inventario item in inventarios)
+    //     {
+    //         if (item.Codigo == codigo)
+    //         {
+    //             Console.WriteLine("1 - Producto");
+    //             Console.WriteLine("2 - Codigo");
+    //             int eleccion = Convert.ToInt32(Console.ReadLine());
+    //             if (eleccion == 1)
+    //             {
+    //                 Console.WriteLine("Ingrese nuevo producto: ");
+    //                 var nuevoProducto = Console.ReadLine();
+    //                 item.Producto = nuevoProducto;
+    //             }
+    //             else
+    //             {
+    //                 if (eleccion == 2)
+    //                 {
+    //                     Console.WriteLine("Ingrese el nuevo stock: ");
+    //                     int nuevoStock = Convert.ToInt32(Console.ReadLine());
+    //                     item.Stock = nuevoStock;
+    //                 }
+    //             }
+    //             break;
+    //         }
+    //     }
+    // }
+    /*4. Agenda de contactos
+Objetivo: Guardar contactos en listas separadas 
+(nombres y teléfonos).
+Descripción: Permitir agregar nuevos contactos y luego 
+listar todos. Al buscar por nombre, mostrar el número 
+correspondiente.
+Extras opcionales: Validar que no se repitan los nombres.
+*/
     public static void Main(String[] args)
     {
-        List<Inventario> inventarios = new List<Inventario>();
-        int codigo = 0;
+        List<Agenda> agenda = new List<Agenda>();
+        var nombre = "";
 
         while (true)
         {
-            codigo += 1;
-            Console.WriteLine("Ingrese el nombre del producto: ");
-            string producto = Console.ReadLine();
-            Console.WriteLine("Ingrese el stock del producto: ");
-            int stock = Convert.ToInt32(Console.ReadLine());
-            Inventario nuevoProducto = new Inventario { Codigo = codigo, Producto = producto, Stock = stock };
-            inventarios.Add(nuevoProducto);
-            Console.WriteLine("Desea ingresar otro producto? (s/n): ");
-            var seguir = Console.ReadLine();
-            if (seguir != "s")
+            while (true)
             {
-                break;
-            }
-        }
-        Console.WriteLine("\nInventario:");
-        MostrarInventario(inventarios);
-        Console.WriteLine("\nIngrese el codigo del producto a buscar: ");
-        int buscar = Convert.ToInt32(Console.ReadLine());
-        BuscarProducto(inventarios, buscar);
-        Console.WriteLine("\nIngrese el codigo del producto a modificar: ");
-        int modificar = Convert.ToInt32(Console.ReadLine());
-        ModificarProducto(inventarios, modificar);
-        MostrarInventario(inventarios);
-    }
-
-    public static void MostrarInventario(List<Inventario> inventarios)
-    {
-        foreach (Inventario item in inventarios)
-        {
-            Console.WriteLine($"Codigo: {item.Codigo} | Producto: {item.Producto} | Stock: {item.Stock}");
-        }
-    }
-
-    public static void BuscarProducto(List<Inventario> inventarios, int codigo)
-    {
-        foreach (Inventario item in inventarios)
-        {
-            if (item.Codigo == codigo)
-            {
-                Console.WriteLine($"Codigo: {item.Codigo} | Producto: {item.Producto} | Stock: {item.Stock}");
-                break;
-            }
-        }
-    }
-
-    public static void ModificarProducto(List<Inventario> inventarios, int codigo)
-    {
-        foreach (Inventario item in inventarios)
-        {
-            if (item.Codigo == codigo)
-            {
-                Console.WriteLine("1 - Producto");
-                Console.WriteLine("2 - Codigo");
-                int eleccion = Convert.ToInt32(Console.ReadLine());
-                if (eleccion == 1)
+                Console.WriteLine("Ingrese el nombre del contacto: ");
+                nombre = Console.ReadLine();
+                if (Existe(agenda, nombre))
                 {
-                    Console.WriteLine("Ingrese nuevo producto: ");
-                    var nuevoProducto = Console.ReadLine();
-                    item.Producto = nuevoProducto;
-                }
-                else
-                {
-                    if (eleccion == 2)
-                    {
-                        Console.WriteLine("Ingrese el nuevo stock: ");
-                        int nuevoStock = Convert.ToInt32(Console.ReadLine());
-                        item.Stock = nuevoStock;
-                    }
+                    Console.WriteLine("\nYa existe el contacto, ingrese otro.");
+                    continue;
                 }
                 break;
             }
+
+
+            Console.WriteLine("Ingrese el numero del contacto: ");
+            int numero = Convert.ToInt32(Console.ReadLine());
+            Agenda contacto = new Agenda { Nombre = nombre, Numero = numero };
+            agenda.Add(contacto);
+            Console.WriteLine("Desea ingresar otro contact? (s/n): ");
+            var respuesta = Console.ReadLine();
+            if (respuesta != "s")
+            {
+                break;
+            }
         }
+
+        MostrarContactos(agenda);
+        Console.WriteLine("\nIngrese el nombre del contacto a buscar: ");
+        string buscar = Console.ReadLine();
+        BuscarContactos(agenda, buscar);
+    }
+
+    public static void MostrarContactos(List<Agenda> agenda)
+    {
+        Console.WriteLine("\nContacto/s:");
+        foreach (Agenda item in agenda)
+        {
+            Console.WriteLine($"Nombre: {item.Nombre} | Telefono: {item.Numero}");
+        }
+    }
+
+    public static void BuscarContactos(List<Agenda> agenda, string contacto)
+    {
+        bool encontrado = false;
+        Console.WriteLine("\nContaacto Buscado: ");
+        foreach (var item in agenda)
+        {
+            if (item.Nombre == contacto)
+            {
+                Console.WriteLine($"Nombre: {item.Nombre} | Telefono: {item.Numero}");
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado)
+        {
+            Console.WriteLine("\nContacto no encontrado");
+        }
+    }
+
+    public static bool Existe(List<Agenda> agenda, string contacto)
+    {
+        foreach (var item in agenda)
+        {
+            if (item.Nombre == contacto)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
