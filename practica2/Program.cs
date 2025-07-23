@@ -142,48 +142,131 @@ Hacé un programa que permita al usuario:
 Agregar un nuevo contacto a agenda.txt, con nombre y teléfono (separados por coma).
 
 Leer todos los contactos existentes.*/
-    public static void Main(String[] args)
+    // public static void Main(String[] args)
+    // {
+    //     string ruta5 = "agenda.txt";
+    //     if (File.Exists(ruta5))
+    //     {
+    //         Console.WriteLine("\nExiste el archivo");
+    //         while (true)
+    //         {
+    //             Console.WriteLine("Ingrese el nombre del contacto: ");
+    //             var nombre = Console.ReadLine();
+    //             Console.WriteLine("Ingrese el telefono: ");
+    //             int telefono = Convert.ToInt32(Console.ReadLine());
+    //             File.AppendAllText(ruta5, nombre + ',');
+    //             File.AppendAllText(ruta5, telefono + Environment.NewLine);
+    //             Console.WriteLine("Desea agregar otro contacto? (s/n): ");
+    //             var resp = Console.ReadLine();
+    //             if (resp != "s")
+    //             {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("\nNo existe el archivo, creando");
+    //         while (true)
+    //         {
+    //             Console.WriteLine("Ingrese el nombre del contacto: ");
+    //             var nombre = Console.ReadLine();
+    //             Console.WriteLine("Ingrese el telefono: ");
+    //             int telefono = Convert.ToInt32(Console.ReadLine());
+    //             File.AppendAllText(ruta5, nombre + ',');
+    //             File.AppendAllText(ruta5, telefono + Environment.NewLine);
+    //             Console.WriteLine("Desea agregar otro contacto? (s/n): ");
+    //             var resp = Console.ReadLine();
+    //             if (resp != "s")
+    //             {
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     string contactos = File.ReadAllText(ruta5);
+    //     Console.WriteLine(contactos);
+    // }
+
+    /*CREAR DIRECTORIOS*/
+    // public static void Main(String[] args)
+    // {
+    //     Directory.CreateDirectory("nuevaCarpteta");
+    //     bool existe = Directory.Exists("nuevaCarpeta");
+    //     Console.WriteLine(existe);
+
+    //     string[] archivos = Directory.GetFiles(datos);
+    //     foreach (var archivo in archivos)
+    //     {
+    //         Console.WriteLine(archivo);
+    //     }
+    // }
+
+    /*LEER Y ESCRIBIR ARCHIVOS CON StreamReader-StreamWriter*/
+    // public static void Main(String[] args)
+    // {
+    //     string ruta = "archivo.txt";
+
+    //     if (File.Exists(ruta))
+    //     {
+    //         Console.WriteLine("\nExiste el archivo");
+    //         //leer archivo
+    //         using (StreamReader leer = new StreamReader(ruta))
+    //         {
+    //             string linea;
+    //             while ((linea = leer.ReadLine()) != null)
+    //             {
+    //                 Console.WriteLine(linea);
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("\nNo existe el archivo, creando");
+    //         //escribir archivos
+    //         using (StreamWriter escribir = new StreamWriter("archivo.txt"))
+    //         {
+    //             escribir.WriteLine("primera linea");
+    //             escribir.WriteLine("segunda linea");
+    //         }
+    //     }
+    // }
+    /*Ejercicio 2: Escribir nombres en un archivo
+    Pedí al usuario que ingrese 5 nombres por consola y guardalos en un archivo nombres.txt, uno por línea.*/
+    public static void Main(string[] args)
     {
-        string ruta5 = "agenda.txt";
-        if (File.Exists(ruta5))
+        string ruta = "palabrasSeparadas.txt";
+        int count = 0;
+        if (File.Exists(ruta))
         {
-            Console.WriteLine("\nExiste el archivo");
-            while (true)
+            Console.WriteLine("\nExiste el archivo.");
+
+            using (StreamReader leer = new StreamReader(ruta))
             {
-                Console.WriteLine("Ingrese el nombre del contacto: ");
-                var nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese el telefono: ");
-                int telefono = Convert.ToInt32(Console.ReadLine());
-                File.AppendAllText(ruta5, nombre + ',');
-                File.AppendAllText(ruta5, telefono + Environment.NewLine);
-                Console.WriteLine("Desea agregar otro contacto? (s/n): ");
-                var resp = Console.ReadLine();
-                if (resp != "s")
+                string linea;
+                while ((linea = leer.ReadLine()) != null)
                 {
-                    break;
+                    Console.WriteLine(linea);
+                    string[] palabras = linea.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    count += palabras.Length;
                 }
             }
+            Console.WriteLine(count);
         }
         else
         {
             Console.WriteLine("\nNo existe el archivo, creando");
-            while (true)
+            using (StreamWriter escribir = new StreamWriter(ruta, true))
             {
-                Console.WriteLine("Ingrese el nombre del contacto: ");
-                var nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese el telefono: ");
-                int telefono = Convert.ToInt32(Console.ReadLine());
-                File.AppendAllText(ruta5, nombre + ',');
-                File.AppendAllText(ruta5, telefono + Environment.NewLine);
-                Console.WriteLine("Desea agregar otro contacto? (s/n): ");
-                var resp = Console.ReadLine();
-                if (resp != "s")
+                while (true)
                 {
-                    break;
+                    Console.WriteLine("Ingrese un nombre y apellido: ");
+                    var nom = Console.ReadLine();
+                    escribir.WriteLine(nom);
+                    Console.WriteLine("Desea ingresar otro nombre? (s/n): ");
+                    var resp = Console.ReadLine();
+                    if (resp != "s") break;
                 }
             }
         }
-        string contactos = File.ReadAllText(ruta5);
-        Console.WriteLine(contactos);
     }
 }
