@@ -71,49 +71,67 @@ class Programs
 
     Y todos los contactos se guardan en un archivo JSON llamado agenda.json.
     */
+    // public static void Main(String[] args)
+    // {
+    //     List<Agenda> agendas = new List<Agenda>();
+    //     string ruta = "agenda.json";
+
+    //     if (File.Exists(ruta))
+    //     {
+    //         Console.WriteLine("\nExiste el archivo.");
+    //         string jsonLeer = File.ReadAllText(ruta);
+
+    //         List<Agenda> contactos = JsonSerializer.Deserialize<List<Agenda>>(jsonLeer);
+    //         foreach (Agenda item in contactos)
+    //         {
+    //             Console.WriteLine($"Nombre: {item.Nombre} | Telefono: {item.Telefono}");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("\nNo existe el archivo.");
+    //         while (true)
+    //         {
+    //             Console.WriteLine("Ingrese el nombre: ");
+    //             string nombre = Console.ReadLine();
+    //             Console.WriteLine("Ingrese el Telefono: ");
+    //             int telefono = Convert.ToInt32(Console.ReadLine());
+
+    //             Agenda agenda = new Agenda { Nombre = nombre, Telefono = telefono };
+    //             agendas.Add(agenda);
+    //             Console.WriteLine("Desea ingresar otro contacto? (s/n): ");
+    //             var resp = Console.ReadLine();
+    //             if (resp != "s") break;
+    //         }
+
+    //         var opcion = new JsonSerializerOptions
+    //         {
+    //             WriteIndented = true,
+    //         };
+
+    //         string json = JsonSerializer.Serialize(agendas, opcion);
+    //         File.WriteAllText(ruta, json);
+    //     }
+    // }
+    /* Mini App: Gestor de Tareas Pendientes (To-Do List)
+     Objetivo:
+    Crear una app de consola que permita:
+
+    Agregar tareas
+
+    Marcar tareas como completadas
+
+    Mostrar todas las tareas
+
+    Mostrar solo las tareas pendientes
+
+    Guardar automáticamente en un archivo JSON tareas.json
+    */
     public static void Main(String[] args)
     {
-        List<Agenda> agendas = new List<Agenda>();
-        string ruta = "agenda.json";
-
-        if (File.Exists(ruta))
-        {
-            Console.WriteLine("\nExiste el archivo.");
-            string jsonLeer = File.ReadAllText(ruta);
-
-            List<Agenda> contactos = JsonSerializer.Deserialize<List<Agenda>>(jsonLeer);
-            foreach (Agenda item in contactos)
-            {
-                Console.WriteLine($"Nombre: {item.Nombre} | Telefono: {item.Telefono}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("\nNo existe el archivo.");
-            while (true)
-            {
-                Console.WriteLine("Ingrese el nombre: ");
-                string nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese el Telefono: ");
-                int telefono = Convert.ToInt32(Console.ReadLine());
-
-                Agenda agenda = new Agenda { Nombre = nombre, Telefono = telefono };
-                agendas.Add(agenda);
-                Console.WriteLine("Desea ingresar otro contacto? (s/n): ");
-                var resp = Console.ReadLine();
-                if (resp != "s") break;
-            }
-
-            var opcion = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-            };
-
-            string json = JsonSerializer.Serialize(agendas, opcion);
-            File.WriteAllText(ruta, json);
-        }
+        Tareas tareas = new Tareas();
+        tareas.Menu();
     }
-
 }
 
 
