@@ -68,21 +68,49 @@ class Program
 
     En Main, crea una lista de Animal, agrega un león y un elefante, y recorre la lista llamando a ambos métodos.
     */
+    // public static void Main(String[] args)
+    // {
+    //     List<Animal> animals = new List<Animal> { new Leon(), new Elefante()};
+
+    //     foreach (var item in animals)
+    //     {
+    //         item.HacerSonido();
+    //         item.Dormir();
+    //         Console.WriteLine();
+    //     }
+
+    // }
+    /*
+     2: Dispositivos con Interface
+    Objetivo: Aplicar interfaces con propiedades y métodos.
+
+    Enunciado:
+    Crea una interfaz IDispositivo con:
+
+    Método Encender()
+
+    Propiedad bool EstaEncendido
+
+    Crea dos clases que implementen esa interfaz:
+
+    Televisor
+
+    Radio
+
+    Cada una debe tener su propia implementación de Encender().
+
+    En Main, crea una lista de IDispositivo y recorre la lista para encenderlos.
+    */
+
     public static void Main(String[] args)
     {
-        List<Animal> animals = new List<Animal>();
-        Animal animal = new Leon();
-        Animal animal1 = new Elefante();
+        List<IDispositivo> dispositivos = new List<IDispositivo> { new Televisor(), new Radio()};
 
-        animals.Add(animal);
-        animals.Add(animal1);
-
-        foreach (var item in animals)
+        foreach (var item in dispositivos)
         {
-            item.HacerSonido();
-            item.Dormir();
+            item.Encender();
+            Console.WriteLine($"Esta Encendido? {item.EstaEncendido}");
             Console.WriteLine();
         }
-        
     }
 }
